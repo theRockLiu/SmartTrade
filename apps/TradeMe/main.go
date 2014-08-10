@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	APP_NAME = "TradeMe "
-	VER_INFO = " 0.1"
+	APP_NAME  = "TradeMe "
+	VER_INFO  = " 0.1"
+	CONF_FILE = "conf/TradeMe.ini"
 )
 
 func main() {
@@ -16,6 +17,6 @@ func main() {
 
 	si := TradeMe.SShareInfo{}
 
-	si.Init(9999, "0.0.0.0")
+	si.Init(CONF_FILE)
 
 }
