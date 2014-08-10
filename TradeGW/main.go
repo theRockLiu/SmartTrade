@@ -5,18 +5,18 @@ import (
 	"SmartTrade/utils"
 )
 
-const strMyInfo string = "just test"
+const strMyInfo = "just test"
 
 func main() {
 	//print base information
 	utils.LogBaseInfo(strMyInfo)
 
-	//
-	StartCSService()
+	////
+	//StartCSService()
 
-	//
-	StartBSService()
+	////
+	//StartBSService()
 
-	//wait for stopping...
-	utils.WaitStopping()
+	////wait for stopping...
+	//utils.WaitStopping()
 }
