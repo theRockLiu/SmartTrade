@@ -9,7 +9,7 @@ import (
 const (
 	APP_NAME  = "TradeMe "
 	VER_INFO  = " 0.1"
-	CONF_FILE = "conf/TradeMe.ini"
+	CONF_FILE = "conf/conf.json"
 )
 
 func main() {
