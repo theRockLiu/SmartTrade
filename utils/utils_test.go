@@ -2,7 +2,7 @@
 package utils
 
 import (
-	"log"
+	"github.com/garyburd/redigo/redis"
 	"testing"
 )
 
@@ -14,10 +14,18 @@ func TestInit(t *testing.T) {
 		t.Error("init failed\n")
 	}
 
-	reply, err := RdsMgr.GetConn().Do("APPEND", "key", "value")
+	reply, err := RdsMgr.GetConn().Do("SET", "key", "value")
 	if nil != err {
 		t.Error("do failed: ", err)
 	}
+	t.Log(reply)
 
-	log.Println(reply)
+	s, err1 := redis.String(RdsMgr.GetConn().Do("GET", "key"))
+	if nil != err1 {
+		t.Error("get key failed : ", s)
+	}
+
+	t.Log(s)
+
+	//log.Println(s)
 }
