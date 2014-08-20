@@ -6,10 +6,13 @@ import (
 	"log"
 	"net"
 	"os"
+	"sync/atomic"
 )
 
 type SShareInfo struct {
-	TcpListener net.Listener
+	TcpListener    net.Listener
+	chanForWaiting <-chan int
+	intTaskCnt     int32
 }
 
 type SConfiguration struct {
@@ -60,8 +63,26 @@ func (this *SShareInfo) Init(strConfFile string) bool {
 	}
 	this.TcpListener = tcpListener
 
+	this.AddTask()
+
 	log.Printf("init succeed!\n")
 
 	return true
 
+}
+
+func (this *SShareInfo) WaitingExit() error {
+
+	log.Printf("enter waiting func\n")
+	defer log.Printf("exit waiting func\n")
+
+	for i := int32(0); i < this.intTaskCnt; i++ {
+		<-this.chanForWaiting
+	}
+
+	return nil
+}
+
+func (this *SShareInfo) AddTask() {
+	atomic.AddInt32(&(this.intTaskCnt), 1)
 }

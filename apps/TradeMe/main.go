@@ -13,10 +13,11 @@ const (
 )
 
 func main() {
-	utils.LogBaseInfo(APP_NAME + VER_INFO)
+	utils.LogAppInfo(APP_NAME + VER_INFO)
 
 	si := TradeMe.SShareInfo{}
 
 	si.Init(CONF_FILE)
 
+	si.WaitingExit()
 }
