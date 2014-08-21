@@ -63,7 +63,7 @@ func (this *SShareInfo) Init(strConfFile string) bool {
 	}
 	this.TcpListener = tcpListener
 
-	this.AddTask()
+	this.AddTaskForWaitingExit()
 
 	log.Printf("init succeed!\n")
 
@@ -83,6 +83,6 @@ func (this *SShareInfo) WaitingExit() error {
 	return nil
 }
 
-func (this *SShareInfo) AddTask() {
+func (this *SShareInfo) AddTaskForWaitingExit() {
 	atomic.AddInt32(&(this.intTaskCnt), 1)
 }
